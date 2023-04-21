@@ -59,6 +59,6 @@ query($owner: String!) {
 echo " ...Done."
 echo 
 
-echo "Job Started: Get Repos and their Admins in org $OWNER"
+echo "Job Finished: Get Repos and their Admins in org $OWNER"
 
   
