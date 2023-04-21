@@ -20,7 +20,8 @@ RESULT=$(gh api repos/"$OWNER"/"$REPO")
 # Parse the existing details to show the owner, repository name, and visibility
 VISIBILITY=$(echo "$RESULT" | jq -r '.visibility')
 
-echo "Job Started: Repo $OWNER/$REPO visibility changed to $NEWVISIBILITY."
+echo "Job Started: Request repo $OWNER/$REPO visibility to be changed to $NEWVISIBILITY."
+echo 
 
 echo " Getting Current Values..."
 echo "  Current Visibility:"
@@ -28,12 +29,6 @@ echo "   Owner: $OWNER"
 echo "   Repository: $REPO"
 echo "   Visibility: $VISIBILITY"  
 echo " ...Done."
-echo 
-
-echo " Requested Visibility:"
-echo "  Owner: $OWNER"
-echo "  Repository: $REPO"
-echo "  Visibility: $NEWVISIBILITY" 
 echo 
 
 echo " Setting New Visibility..."
