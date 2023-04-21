@@ -21,20 +21,21 @@ RESULT=$(gh api repos/"$OWNER"/"$REPO")
 VISIBILITY=$(echo "$RESULT" | jq -r '.visibility')
 
 echo "Getting Current Values..."
-echo "Current Values:"
-echo "   Owner: $OWNER"
-echo "   Repository: $REPO"
-echo "   Visibility: $VISIBILITY"  
+echo 
+echo " Current Visibility:"
+echo "  Owner: $OWNER"
+echo "  Repository: $REPO"
+echo "  Visibility: $VISIBILITY"  
+echo "...Done."
+
+
+echo "Requested Visibility:"
+echo " Owner: $OWNER"
+echo " Repository: $REPO"
+echo " Visibility: $NEWVISIBILITY" 
 echo 
 
-
-echo "Requested Values:"
-echo "   Owner: $OWNER"
-echo "   Repository: $REPO"
-echo "   Visibility: $NEWVISIBILITY" 
-echo 
-echo "Getting Current Values..."
-
+echo "Setting New Visibility..."
 # Change the repository visibility to $VISIBILITY
 gh api --silent \
   --method PATCH \
@@ -43,8 +44,9 @@ gh api --silent \
   /repos/"$OWNER"/"$REPO" \
   -f visibility=$NEWVISIBILITY
 echo "...Done."
+echo 
   
-echo "Confirming New Values..."
+echo "Confirming New Visibility..."
 # Get the repository details to determine its visibility
 RESULT=$(gh api repos/"$OWNER"/"$REPO")
 
@@ -53,9 +55,9 @@ OWNER=$(echo "$RESULT" | jq -r '.owner.login')
 REPO=$(echo "$RESULT" | jq -r '.name')
 VISIBILITY=$(echo "$RESULT" | jq -r '.visibility')
 
-echo "New Values:"
-echo "   Owner: $OWNER"
-echo "   Repository: $REPO"
-echo "   Visibility: $VISIBILITY"  
+echo " New Values:"
+echo " Owner: $OWNER"
+echo " Repository: $REPO"
+echo " Visibility: $VISIBILITY"  
 echo "...Done."
   
