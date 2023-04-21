@@ -11,13 +11,26 @@ while getopts "h:o:r:v:" option; do
       r)
           REPO=${OPTARG};;
       v)
-          VISIBILITY=${OPTARG};;
+          NEWVISIBILITY=${OPTARG};;
    esac
 done
+# Get the repository details to determine its visibility
+RESULT=$(gh api repos/"$OWNER"/"$REPO")
 
-echo "OWNER=$OWNER"
-echo "REPO=$REPO"
-echo "VISIBILITY=$VISIBILITY"
+# Parse the existing details to show the owner, repository name, and visibility
+VISIBILITY=$(echo "$RESULT" | jq -r '.visibility')
+
+echo "Current Values:"
+echo "   Owner: $OWNER"
+echo "   Repository: $REPO"
+echo "   Visibility: $VISIBILITY"  
+echo "Done."
+
+
+echo "Requested Values:"
+echo "   Owner: $OWNER"
+echo "   Repository: $REPO"
+echo "   Visibility: $NEWVISIBILITY" 
 
 # Change the repository visibility to $VISIBILITY
 gh api --silent \
@@ -25,7 +38,7 @@ gh api --silent \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   /repos/"$OWNER"/"$REPO" \
-  -f visibility=$VISIBILITY
+  -f visibility=$NEWVISIBILITY
   
 # Get the repository details to determine its visibility
 RESULT=$(gh api repos/"$OWNER"/"$REPO")
