@@ -33,18 +33,20 @@ echo
 
 echo " Setting New Visibility..."
 # Change the repository visibility to $VISIBILITY
+echo "  gh api --silent "
+echo "  --method PATCH "
+echo "  -H "Accept: application/vnd.github+json" "
+echo "  -H "X-GitHub-Api-Version: 2022-11-28" "
+echo "  /repos/"$OWNER"/"$REPO" "
+echo "  -f visibility=$NEWVISIBILITY"
+    
 gh api --silent \
   --method PATCH \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
   /repos/"$OWNER"/"$REPO" \
   -f visibility=$NEWVISIBILITY
-echo "  gh api --silent \
-    --method PATCH \
-    -H "Accept: application/vnd.github+json" \
-    -H "X-GitHub-Api-Version: 2022-11-28" \
-    /repos/"$OWNER"/"$REPO" \
-    -f visibility=$NEWVISIBILITY"
+
 echo " ...Done."
 echo 
   
