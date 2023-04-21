@@ -15,6 +15,10 @@ while getopts ":h:o:r:v" option; do
    esac
 done
 
+echo "OWNER=$OWNER"
+echo "REPO=$REPO"
+echo "VISIBILITY=$VISIBILITY"
+
 gh api \
   --method PATCH \
   -H "Accept: application/vnd.github+json" \
