@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # Get the options
-while getopts ":h:o:r:v" option; do
+while getopts "h:o:r:v:" option; do
    case $option in
       h) # display Help
          Help
