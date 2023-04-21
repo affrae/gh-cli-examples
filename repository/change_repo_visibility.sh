@@ -21,13 +21,12 @@ RESULT=$(gh api repos/"$OWNER"/"$REPO")
 VISIBILITY=$(echo "$RESULT" | jq -r '.visibility')
 
 echo "Getting Current Values..."
-echo 
 echo " Current Visibility:"
 echo "  Owner: $OWNER"
 echo "  Repository: $REPO"
 echo "  Visibility: $VISIBILITY"  
 echo "...Done."
-
+echo 
 
 echo "Requested Visibility:"
 echo " Owner: $OWNER"
@@ -60,4 +59,7 @@ echo " Owner: $OWNER"
 echo " Repository: $REPO"
 echo " Visibility: $VISIBILITY"  
 echo "...Done."
+
+echo "Repo $OWNER/$REPO visibility changed to $VISIBILITY."
+
   
