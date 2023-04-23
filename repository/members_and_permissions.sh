@@ -54,7 +54,7 @@ query($owner: String!) {
     }
   }
 }
-'
+' | jq '.'
 
 echo " ...Done."
 echo 
